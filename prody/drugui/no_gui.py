@@ -1015,13 +1015,13 @@ def drugui_prepare(pdb, psf, **kwargs):
             coordpdb $intermediate.pdb PROB
 
             if {$totalcharge > 0} {
-                set n_ions [expr round($totalcharge)]
+                set n_ions [expr max(1, round($totalcharge))]
                 set ion_name "CLA"
                 set ion_resname "CLA"
                 set ncl $n_ions
                 set nna 0
-            } else  {
-                set n_ions [expr -1 * round($totalcharge)]
+            } else {
+                set n_ions [expr max(1, round(abs($totalcharge)))]
                 set ion_name "SOD"
                 set ion_resname "SOD"
                 set ncl 0
